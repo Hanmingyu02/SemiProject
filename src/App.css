@@ -1,38 +1,63 @@
-.App {
-  text-align: center;
+.centered {
+    text-align: center;
+    margin: auto;
 }
 
-.App-logo { 
-  height: 40vmin;
-  pointer-events: none;
+.bg-dark {
+    background-color: rgb(70, 69, 69);
+    color: white;
+}
+.collapse {
+    transition: height 0.3s ease-in-out;
+}
+.topImg {
+    max-width: 1400px;
+    margin: auto;
+    height: 700px;
+}
+.midImg {
+    height: 220px;
+    width: 100%;
+}
+.midCol {
+    text-align: center;
+}
+.nav-link {
+    min-width: 125px; /* 최소 너비 150px */
+    display: block; /* 블록 요소로 설정하여 너비가 적용되도록 함 */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.stadium {
+    font-size: 2rem;
+    color: rgb(92, 92, 92);
+    font-family: "Times New Roman", Times, serif;
+}
+.fieldName {
+    font-weight: 600;
+    font-family: "Times New Roman", Times, serif;
+    color: rgb(92, 92, 92);
+}
+.explanation {
+    font-weight: 100;
+    font-family: "Times New Roman", Times, serif;
+    color: rgb(133, 132, 132);
+}
+.imgText {
+    font-weight: 500;
+    font-size: 3rem;
+    color: aliceblue;
+}
+.carousel-caption {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+}
+.bottomText {
+    font-size: 0.8rem;
+    color: rgb(136, 136, 136);
+    margin-bottom: 5%;
+}
+.bottomHead {
+    margin-bottom: 0%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}

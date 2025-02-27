@@ -10,6 +10,8 @@ import ReservationPage from "./components/ReservationPage";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import CustomerService from "./components/CustomerService";
+import Location from "./components/Location";
+import Register from "./components/Register";
 
 function App() {
     return (
@@ -31,6 +33,9 @@ function App() {
                                 <Route path='/login' element={<Login />}></Route>
                                 <Route path='/signup' element={<SignUp />}></Route>
                                 <Route path='/customerservice' element={<CustomerService />}></Route>
+                                <Route path='/location' element={<Location />}></Route>
+                                
+                                <Route path='/register' element={<Register />}></Route>
                             </Routes>
                         </Col>
                     </Row>

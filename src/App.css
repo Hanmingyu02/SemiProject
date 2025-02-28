@@ -16,21 +16,80 @@
     height: 700px;
 }
 .midImg {
+<<<<<<< HEAD
+    height: 230px;
+    width: 100%;
+}
+.midImg:hover {
+    opacity: 0.8;
+}
+=======
     height: 220px;
     width: 100%;
 }
+>>>>>>> origin/main
 .midCol {
     text-align: center;
 }
 .nav-link {
+<<<<<<< HEAD
+    min-width: 125px;
+    display: block;
+=======
     min-width: 125px; /* 최소 너비 150px */
     display: block; /* 블록 요소로 설정하여 너비가 적용되도록 함 */
+>>>>>>> origin/main
 }
 
 .stadium {
     font-size: 2rem;
     color: rgb(92, 92, 92);
     font-family: "Times New Roman", Times, serif;
+<<<<<<< HEAD
+}
+.fieldName {
+    font-weight: 600;
+    font-family: "Times New Roman", Times, serif;
+    color: rgb(92, 92, 92);
+}
+.explanation {
+    font-weight: 100;
+    font-family: "Times New Roman", Times, serif;
+    color: rgb(133, 132, 132);
+}
+.imgText {
+    font-weight: 500;
+    font-size: 3.9rem;
+    color: aliceblue;
+}
+.carousel-caption {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+}
+.bottomText {
+    font-size: 0.8rem;
+    color: rgb(136, 136, 136);
+    margin-bottom: 5%;
+}
+.bottomHead {
+    margin-bottom: 0%;
+}
+.scrollable-card {
+    max-height: 150px;
+    overflow-y: auto;
+}
+.modal-title-centered {
+    text-align: center;
+    width: 100%;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.imgButton {
+    height: 50px;
+    width: 140px;
+}
+=======
 }
 .fieldName {
     font-weight: 600;
@@ -61,3 +120,4 @@
     margin-bottom: 0%;
 }
 
+>>>>>>> origin/main

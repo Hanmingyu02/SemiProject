@@ -28,17 +28,17 @@ function App() {
                     <Row>
                         <Col xs={12} sm={12} md={12} lg={12}>
                             <Routes>
-                                <Route path='/' element={<Home />}></Route>
-                                <Route path='/boardPage' element={<BoardPage />}></Route>
-                                <Route path='/stadiumPage' element={<StadiumPage />}></Route>
-                                <Route path='/reservationPage' element={<ReservationPage />}></Route>
-                                <Route path='/login' element={<Login />}></Route>
-                                <Route path='/signup' element={<SignUp />}></Route>
-                                <Route path='/customerservice' element={<CustomerService />}></Route>
-                                <Route path='/location' element={<Location />}></Route>
-                                <Route path='/scsoccer' element={<SchoolSoccerField />}></Route>
-                                <Route path='/mofutsal' element={<MortarFutsalField />}></Route>
-                                <Route path='/scfutsal' element={<SchoolFutsalField />}></Route>
+                                <Route path='/' element={<Home />} />
+                                <Route path='/boardPage' element={<BoardPage />} />
+                                <Route path='/stadiumPage' element={<StadiumPage />} />
+                                <Route path='/reservationPage' element={<ReservationPage />} />
+                                <Route path='/login' element={<Login />} />
+                                <Route path='/signup' element={<SignUp />} />
+                                <Route path='/customerservice' element={<CustomerService />} />
+                                <Route path='/location' element={<Location />} />
+                                <Route path='/scsoccer' element={<SchoolSoccerField />} />
+                                <Route path='/mofutsal' element={<MortarFutsalField />} />
+                                <Route path='/scfutsal' element={<SchoolFutsalField />} />
                             </Routes>
                         </Col>
                     </Row>

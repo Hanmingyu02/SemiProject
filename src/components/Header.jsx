@@ -5,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 export default function Header() {
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
-
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -14,6 +13,7 @@ export default function Header() {
     const [checkAll, setCheckAll] = useState(false);
     const [checkAge, setCheckAge] = useState(false);
     const [checkInformation, setCheckInformation] = useState(false);
+
     const checkAllHandler = () => {
         const CheckAll = !checkAll;
         setCheckUse(CheckAll);
@@ -21,16 +21,19 @@ export default function Header() {
         setCheckAge(CheckAll);
         setCheckInformation(CheckAll);
     };
+
     const checkUseHandler = (e) => {
         const checked = e.target.checked;
         setCheckUse(checked);
         if (!checked) setCheckAll(false);
     };
+
     const checkInformationHandler = (e) => {
         const checked = e.target.checked;
         setCheckInformation(checked);
         if (!checked) setCheckAll(false);
     };
+
     const checkAgeHandler = (e) => {
         const checked = e.target.checked;
         setCheckAge(checked);
@@ -46,8 +49,8 @@ export default function Header() {
     }, [checkUse, checkInformation, checkAge]);
 
     const handleSignUp = () => {
-        const iSFormValid = checkUse && checkInformation && checkAge;
-        if (iSFormValid) {
+        const isFormValid = checkUse && checkInformation && checkAge;
+        if (isFormValid) {
             navigate("/login");
             handleClose();
         } else {
@@ -65,11 +68,11 @@ export default function Header() {
                     <Navbar.Toggle aria-controls='responsive-navbar-nav' />
                     <Navbar.Collapse id='responsive-navbar-nav'>
                         <Nav className='me-auto'>
-                            <Nav.Link as={Link} to='/location'>
-                                Location
-                            </Nav.Link>
                             <Nav.Link as={Link} to='/stadiumPage'>
                                 Stadium
+                            </Nav.Link>
+                            <Nav.Link as={Link} to='/location'>
+                                Location
                             </Nav.Link>
                             <Nav.Link as={Link} to='/boardPage'>
                                 Notice
@@ -93,13 +96,13 @@ export default function Header() {
                         <table style={{ width: "30%", color: "white", margin: "auto", textAlign: "left" }}>
                             <thead>
                                 <tr>
-                                    <th style={{ minWidth: "150px" }}>Location</th>
                                     <th style={{ minWidth: "150px" }}>Stadium</th>
+                                    <th style={{ minWidth: "150px" }}>Location</th>
                                     <th style={{ minWidth: "150px" }}>Notice</th>
                                     <th style={{ minWidth: "150px" }}>Reservation</th>
                                 </tr>
                             </thead>
-                            <tbody style={{ fontSize: "0.8rem", height: "40px" }}>
+                            <tbody style={{ fontSize: "0.8rem" }}>
                                 <tr style={{ height: "30px" }}>
                                     <td></td>
                                     <td onClick={() => navigate("/scfutsal")}>School Futsal Field</td>
@@ -149,7 +152,7 @@ export default function Header() {
                                     onChange={checkUseHandler}
                                 />
                                 <Card className='mt-4'>
-                                    <Card.Body className='scrollable-card '>
+                                    <Card.Body className='scrollable-card'>
                                         <Card.Title>제1조 목적</Card.Title>
                                         <Card.Text>
                                             본 이용약관은 “사이트명”(이하 "사이트")의 서비스의 이용조건과 운영에 관한

@@ -11,13 +11,9 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import CustomerService from "./components/CustomerService";
 import Location from "./components/Location";
-<<<<<<< HEAD
 import SchoolFutsalField from "./components/Stadium/SchoolFutsalField";
 import SchoolSoccerField from "./components/Stadium/SchoolSoccerField";
 import MortarFutsalField from "./components/Stadium/MortarFutsalField";
-=======
-import Register from "./components/Register";
->>>>>>> origin/main
 
 function App() {
     return (
@@ -29,30 +25,20 @@ function App() {
                             <Header />
                         </Col>
                     </Row>
-<<<<<<< HEAD
                     <Row>
                         <Col xs={12} sm={12} md={12} lg={12}>
-=======
-                    <Row >
-                        <Col xs={12} sm={12} md={12} lg={12} >
->>>>>>> origin/main
                             <Routes>
-                                <Route path='/' element={<Home />}></Route>
-                                <Route path='/boardPage' element={<BoardPage />}></Route>
-                                <Route path='/stadiumPage' element={<StadiumPage />}></Route>
-                                <Route path='/reservationPage' element={<ReservationPage />}></Route>
-                                <Route path='/login' element={<Login />}></Route>
-                                <Route path='/signup' element={<SignUp />}></Route>
-                                <Route path='/customerservice' element={<CustomerService />}></Route>
-                                <Route path='/location' element={<Location />}></Route>
-<<<<<<< HEAD
-                                <Route path='/scsoccer' element={<SchoolSoccerField />}></Route>
-                                <Route path='/mofutsal' element={<MortarFutsalField />}></Route>
-                                <Route path='/scfutsal' element={<SchoolFutsalField />}></Route>
-=======
-                                
-                                <Route path='/register' element={<Register />}></Route>
->>>>>>> origin/main
+                                <Route path='/' element={<Home />} />
+                                <Route path='/boardPage' element={<BoardPage />} />
+                                <Route path='/stadiumPage' element={<StadiumPage />} />
+                                <Route path='/reservationPage' element={<ReservationPage />} />
+                                <Route path='/login' element={<Login />} />
+                                <Route path='/signup' element={<SignUp />} />
+                                <Route path='/customerservice' element={<CustomerService />} />
+                                <Route path='/location' element={<Location />} />
+                                <Route path='/scsoccer' element={<SchoolSoccerField />} />
+                                <Route path='/mofutsal' element={<MortarFutsalField />} />
+                                <Route path='/scfutsal' element={<SchoolFutsalField />} />
                             </Routes>
                         </Col>
                     </Row>

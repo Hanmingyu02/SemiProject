@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { useState, useEffect } from "react";
 import { Collapse, Modal, Button, Form, Nav, Navbar, Card } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
@@ -6,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 export default function Header() {
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
-
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -15,6 +13,7 @@ export default function Header() {
     const [checkAll, setCheckAll] = useState(false);
     const [checkAge, setCheckAge] = useState(false);
     const [checkInformation, setCheckInformation] = useState(false);
+
     const checkAllHandler = () => {
         const CheckAll = !checkAll;
         setCheckUse(CheckAll);
@@ -22,16 +21,19 @@ export default function Header() {
         setCheckAge(CheckAll);
         setCheckInformation(CheckAll);
     };
+
     const checkUseHandler = (e) => {
         const checked = e.target.checked;
         setCheckUse(checked);
         if (!checked) setCheckAll(false);
     };
+
     const checkInformationHandler = (e) => {
         const checked = e.target.checked;
         setCheckInformation(checked);
         if (!checked) setCheckAll(false);
     };
+
     const checkAgeHandler = (e) => {
         const checked = e.target.checked;
         setCheckAge(checked);
@@ -47,8 +49,8 @@ export default function Header() {
     }, [checkUse, checkInformation, checkAge]);
 
     const handleSignUp = () => {
-        const iSFormValid = checkUse && checkInformation && checkAge;
-        if (iSFormValid) {
+        const isFormValid = checkUse && checkInformation && checkAge;
+        if (isFormValid) {
             navigate("/login");
             handleClose();
         } else {
@@ -58,23 +60,6 @@ export default function Header() {
 
     return (
         <div onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)} style={{ position: "relative" }}>
-=======
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import { useState } from "react";
-import { Collapse } from "react-bootstrap";
-import { Link } from "react-router-dom";
-
-export default function Header() {
-    const [open, setOpen] = useState(false);
-
-    return (
-        <div 
-            onMouseEnter={() => setOpen(true)} 
-            onMouseLeave={() => setOpen(false)}
-            style={{ position: "relative" }}
-        >
->>>>>>> origin/main
             <Navbar collapseOnSelect expand='lg' fixed='top' bg='light' data-bs-theme='light'>
                 <Navbar.Brand as={Link} to='/'>
                     Reservation
@@ -83,21 +68,12 @@ export default function Header() {
                     <Navbar.Toggle aria-controls='responsive-navbar-nav' />
                     <Navbar.Collapse id='responsive-navbar-nav'>
                         <Nav className='me-auto'>
-<<<<<<< HEAD
-                            <Nav.Link as={Link} to='/location'>
-                                Location
-                            </Nav.Link>
-                            <Nav.Link as={Link} to='/stadiumPage'>
-                                Stadium
-                            </Nav.Link>
-=======
                             <Nav.Link as={Link} to='/stadiumPage'>
                                 Stadium
                             </Nav.Link>
                             <Nav.Link as={Link} to='/location'>
                                 Location
                             </Nav.Link>
->>>>>>> origin/main
                             <Nav.Link as={Link} to='/boardPage'>
                                 Notice
                             </Nav.Link>
@@ -111,13 +87,7 @@ export default function Header() {
                     <Nav.Link as={Link} to='/login'>
                         Login
                     </Nav.Link>
-<<<<<<< HEAD
                     <Nav.Link onClick={handleShow}>Register</Nav.Link>
-=======
-                    <Nav.Link eventKey={2} as={Link} to='/register'>
-                        Register
-                    </Nav.Link>
->>>>>>> origin/main
                 </Nav>
             </Navbar>
             <div className='centered bg-dark'>
@@ -126,19 +96,13 @@ export default function Header() {
                         <table style={{ width: "30%", color: "white", margin: "auto", textAlign: "left" }}>
                             <thead>
                                 <tr>
-<<<<<<< HEAD
-                                    <th style={{ minWidth: "150px" }}>Location</th>
-                                    <th style={{ minWidth: "150px" }}>Stadium</th>
-=======
                                     <th style={{ minWidth: "150px" }}>Stadium</th>
                                     <th style={{ minWidth: "150px" }}>Location</th>
->>>>>>> origin/main
                                     <th style={{ minWidth: "150px" }}>Notice</th>
                                     <th style={{ minWidth: "150px" }}>Reservation</th>
                                 </tr>
                             </thead>
-<<<<<<< HEAD
-                            <tbody style={{ fontSize: "0.8rem", height: "40px" }}>
+                            <tbody style={{ fontSize: "0.8rem" }}>
                                 <tr style={{ height: "30px" }}>
                                     <td></td>
                                     <td onClick={() => navigate("/scfutsal")}>School Futsal Field</td>
@@ -154,24 +118,6 @@ export default function Header() {
                                 <tr style={{ height: "30px" }}>
                                     <td></td>
                                     <td onClick={() => navigate("/mofutsal")}>Mortar Futsal Field</td>
-=======
-                            <tbody style={{fontSize:"0.8rem"}}>
-                                <tr>
-                                    <td></td>
-                                    <td>School Futsal Field</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>School Soccer Field</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>Mortar Futsal Field</td>
->>>>>>> origin/main
                                     <td></td>
                                     <td></td>
                                 </tr>
@@ -180,7 +126,6 @@ export default function Header() {
                     </div>
                 </Collapse>
             </div>
-<<<<<<< HEAD
             <Modal show={show} onHide={handleClose} animation={false}>
                 <Modal.Header closeButton>
                     <div className='modal-title-centered'>약관동의</div>
@@ -207,7 +152,7 @@ export default function Header() {
                                     onChange={checkUseHandler}
                                 />
                                 <Card className='mt-4'>
-                                    <Card.Body className='scrollable-card '>
+                                    <Card.Body className='scrollable-card'>
                                         <Card.Title>제1조 목적</Card.Title>
                                         <Card.Text>
                                             본 이용약관은 “사이트명”(이하 "사이트")의 서비스의 이용조건과 운영에 관한
@@ -289,8 +234,3 @@ export default function Header() {
         </div>
     );
 }
-=======
-        </div>
-    );
-}
->>>>>>> origin/main

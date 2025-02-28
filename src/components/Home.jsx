@@ -1,17 +1,14 @@
 import React from "react";
-import Carousel from "react-bootstrap/Carousel";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import { Button, Carousel, Container,Row, Col } from "react-bootstrap";
 import { useState } from "react";
-import Button from "react-bootstrap/Button";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
-import { Link } from "react-router-dom";
 import { FaFacebookF } from "react-icons/fa";
 import { IoLogoTwitter } from "react-icons/io";
 import { CiInstagram } from "react-icons/ci";
 
 export default function Home() {
+    const navigate = useNavigate();
     const [useShow, setUseShow] = useState(false);
     const [personShow, setPersonShow] = useState(false);
 
@@ -27,18 +24,21 @@ export default function Home() {
                         <img className='d-block w-100 topImg' src='/images/football1.jpg' alt='First slide' />
                         <Carousel.Caption>
                             <h5 className='imgText'>School Futsal Field</h5>
+                            <Button className="imgButton" variant="outline-light" onClick={()=>navigate('scfutsal')}>Stadium</Button>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
                         <img className='d-block w-100 topImg' src='/images/football3.jpg' alt='Second slide' />
                         <Carousel.Caption>
-                            <h5 className='imgText'>School Soccer Field</h5>
+                            <h5 className='imgText'>Mortar Futsal Field</h5>
+                            <Button className="imgButton" variant="outline-light" onClick={()=>navigate('scsoccer')}>Stadium</Button>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
                         <img className='d-block w-100 topImg' src='/images/football3.jpg' alt='Third slide' />
                         <Carousel.Caption>
-                            <h5 className='imgText'>Mortar Futsal Field</h5>
+                            <h5 className='imgText'>School Soccer Field</h5>
+                            <Button className="imgButton" variant="outline-light" onClick={()=>navigate('mofutsal')}>Stadium</Button>
                         </Carousel.Caption>
                     </Carousel.Item>
                 </Carousel>
@@ -47,25 +47,25 @@ export default function Home() {
                 <div style={{ marginTop: "50px" }}>
                     <div className='centered m-5 stadium'>Stadium</div>
                     <Row className='midCol'>
-                        <Col>
+                        <Col onClick={() => navigate("/scfutsal")}>
                             <img src='/images/football1.jpg' className='midImg'></img>
                         </Col>
-                        <Col>
+                        <Col onClick={() => navigate("/scsoccer")}>
                             <img src='/images/football2.jpg' className='midImg'></img>
                         </Col>
-                        <Col>
+                        <Col onClick={() => navigate("/mofutsal")}>
                             <img src='/images/football3.jpg' className='midImg'></img>
                         </Col>
                     </Row>
                     <Row className='fieldName mt-2'>
-                        <Col>School Futsal Field</Col>
-                        <Col>School Soccer Field</Col>
-                        <Col>Mortar Futsal Field</Col>
+                        <Col onClick={() => navigate("/scfutsal")}>School Futsal Field</Col>
+                        <Col onClick={() => navigate("/scsoccer")}>School Soccer Field</Col>
+                        <Col onClick={() => navigate("/mofutsal")}>Mortar Futsal Field</Col>
                     </Row>
                     <Row className='explanation'>
-                        <Col>A great place for sports and fun!</Col>
-                        <Col>Perfect for team activities and events!</Col>
-                        <Col>Ideal for friendly matches and practice!</Col>
+                        <Col onClick={() => navigate("/scfutsal")}>A great place for sports and fun!</Col>
+                        <Col onClick={() => navigate("/scsoccer")}>Perfect for team activities and events!</Col>
+                        <Col onClick={() => navigate("/mofutsal")}>Ideal for friendly matches and practice!</Col>
                     </Row>
                 </div>
             </Container>

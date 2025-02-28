@@ -16,15 +16,18 @@
     height: 700px;
 }
 .midImg {
-    height: 220px;
+    height: 230px;
     width: 100%;
+}
+.midImg:hover {
+    opacity: 0.8;
 }
 .midCol {
     text-align: center;
 }
 .nav-link {
-    min-width: 125px; /* 최소 너비 150px */
-    display: block; /* 블록 요소로 설정하여 너비가 적용되도록 함 */
+    min-width: 125px;
+    display: block;
 }
 
 .stadium {
@@ -44,7 +47,7 @@
 }
 .imgText {
     font-weight: 500;
-    font-size: 3rem;
+    font-size: 3.9rem;
     color: aliceblue;
 }
 .carousel-caption {
@@ -60,4 +63,17 @@
 .bottomHead {
     margin-bottom: 0%;
 }
-
+.scrollable-card {
+    max-height: 150px;
+    overflow-y: auto;
+}
+.modal-title-centered {
+    text-align: center;
+    width: 100%;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.imgButton {
+    height: 50px;
+    width: 140px;
+}

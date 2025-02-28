@@ -11,7 +11,9 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import CustomerService from "./components/CustomerService";
 import Location from "./components/Location";
-import Register from "./components/Register";
+import SchoolFutsalField from "./components/Stadium/SchoolFutsalField";
+import SchoolSoccerField from "./components/Stadium/SchoolSoccerField";
+import MortarFutsalField from "./components/Stadium/MortarFutsalField";
 
 function App() {
     return (
@@ -23,8 +25,8 @@ function App() {
                             <Header />
                         </Col>
                     </Row>
-                    <Row >
-                        <Col xs={12} sm={12} md={12} lg={12} >
+                    <Row>
+                        <Col xs={12} sm={12} md={12} lg={12}>
                             <Routes>
                                 <Route path='/' element={<Home />}></Route>
                                 <Route path='/boardPage' element={<BoardPage />}></Route>
@@ -34,8 +36,9 @@ function App() {
                                 <Route path='/signup' element={<SignUp />}></Route>
                                 <Route path='/customerservice' element={<CustomerService />}></Route>
                                 <Route path='/location' element={<Location />}></Route>
-                                
-                                <Route path='/register' element={<Register />}></Route>
+                                <Route path='/scsoccer' element={<SchoolSoccerField />}></Route>
+                                <Route path='/mofutsal' element={<MortarFutsalField />}></Route>
+                                <Route path='/scfutsal' element={<SchoolFutsalField />}></Route>
                             </Routes>
                         </Col>
                     </Row>

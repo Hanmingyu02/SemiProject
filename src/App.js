@@ -22,30 +22,32 @@ function App() {
         <div className='py-5'>
             <BrowserRouter>
                 <div>
-                    <Row>
-                        <Col className='mb-5'>
-                            <Header />
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col xs={12} sm={12} md={12} lg={12}>
-                            <Routes>
-                                <Route path='/' element={<Home />} />
-                                <Route path='/boardPage' element={<BoardPage />} />
-                                <Route path='/stadiumPage' element={<StadiumPage />} />
-                                <Route path='/reservationPage' element={<ReservationPage />} />
-                                <Route path='/login' element={<Login />} />
-                                <Route path='/signup' element={<SignUp />} />
-                                <Route path='/customerservice' element={<CustomerService />} />
-                                <Route path='/location' element={<Location />} />
-                                <Route path='/scsoccer' element={<SchoolSoccerField />} />
-                                <Route path='/gupofutsal' element={<GupoFusalField />} />
-                                <Route path='/scfutsal' element={<SchoolFutsalField />} />
-                                <Route path='/register' element={<Register/>} />
-                            </Routes>
-                        </Col>
-                    </Row>
-                    <Row>
+                    <div className="mainWrap">
+                        <Row>
+                            <Col className='mb-5'>
+                                <Header />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col xs={12} sm={12} md={12} lg={12}>
+                                <Routes>
+                                    <Route path='/' element={<Home />} />
+                                    <Route path='/boardPage' element={<BoardPage />} />
+                                    <Route path='/stadiumPage' element={<StadiumPage />} />
+                                    <Route path='/reservationPage' element={<ReservationPage />} />
+                                    <Route path='/login' element={<Login />} />
+                                    <Route path='/signup' element={<SignUp />} />
+                                    <Route path='/customerservice' element={<CustomerService />} />
+                                    <Route path='/location' element={<Location />} />
+                                    <Route path='/scsoccer' element={<SchoolSoccerField />} />
+                                    <Route path='/gupofutsal' element={<GupoFusalField />} />
+                                    <Route path='/scfutsal' element={<SchoolFutsalField />} />
+                                    <Route path='/register' element={<Register />} />
+                                </Routes>
+                            </Col>
+                        </Row>
+                    </div>
+                    <Row className="mainBottom">
                         <Col className='mb-5'>
                             <Footer />
                         </Col>

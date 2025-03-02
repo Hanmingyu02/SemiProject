@@ -90,7 +90,7 @@ export default function Header() {
                     <Nav.Link onClick={handleShow}>Register</Nav.Link>
                 </Nav>
             </Navbar>
-            <div className='centered bg-dark'>
+            <div className='centered bg-dark' onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
                 <Collapse in={open} className='p-4'>
                     <div id='example-collapse-text'>
                         <table style={{ width: "30%", color: "white", margin: "auto", textAlign: "left" }}>
@@ -117,7 +117,7 @@ export default function Header() {
                                 </tr>
                                 <tr style={{ height: "30px" }}>
                                     <td></td>
-                                    <td onClick={() => navigate("/mofutsal")}>Mortar Futsal Field</td>
+                                    <td onClick={() => navigate("/gupofutsal")}>Gupo Futsal Field</td>
                                     <td></td>
                                     <td></td>
                                 </tr>

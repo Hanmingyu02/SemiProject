@@ -92,3 +92,26 @@
     height: 50px;
     width: 140px;
 }
+.loginWrap{
+    max-width: 60%;
+    text-align: center;
+    margin: auto;
+    background-color: bisque;
+    margin-top: 30%;
+    height: 500px;
+}
+.loginTopText{
+    font-size: 2rem;
+    padding-top: 8%;
+    padding-bottom: 3%;
+    font-weight: bold;
+}
+.loginBody{
+    max-width: 80%;
+    margin: auto;
+}
+.loginButton{
+    height: 70px;
+    width: 80px;
+    border-radius: px;
+}

@@ -13,7 +13,7 @@ import CustomerService from "./components/CustomerService";
 import Location from "./components/Location";
 import SchoolFutsalField from "./components/Stadium/SchoolFutsalField";
 import SchoolSoccerField from "./components/Stadium/SchoolSoccerField";
-import MortarFutsalField from "./components/Stadium/MortarFutsalField";
+import GupoFusalField from "./components/Stadium/GupoFusalField";
 
 function App() {
     return (
@@ -37,7 +37,7 @@ function App() {
                                 <Route path='/customerservice' element={<CustomerService />} />
                                 <Route path='/location' element={<Location />} />
                                 <Route path='/scsoccer' element={<SchoolSoccerField />} />
-                                <Route path='/mofutsal' element={<MortarFutsalField />} />
+                                <Route path='/gupofutsal' element={<GupoFusalField />} />
                                 <Route path='/scfutsal' element={<SchoolFutsalField />} />
                             </Routes>
                         </Col>

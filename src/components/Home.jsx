@@ -31,7 +31,7 @@ export default function Home() {
                     <Carousel.Item>
                         <img className='d-block w-100 topImg' src='/images/football3.jpg' alt='Second slide' />
                         <Carousel.Caption>
-                            <h5 className='imgText'>Mortar Futsal Field</h5>
+                            <h5 className='imgText'>Gupo Futsal Field</h5>
                             <Button className='imgButton' variant='outline-light' onClick={() => navigate("scsoccer")}>
                                 Stadium
                             </Button>
@@ -41,7 +41,7 @@ export default function Home() {
                         <img className='d-block w-100 topImg' src='/images/football3.jpg' alt='Third slide' />
                         <Carousel.Caption>
                             <h5 className='imgText'>School Soccer Field</h5>
-                            <Button className='imgButton' variant='outline-light' onClick={() => navigate("mofutsal")}>
+                            <Button className='imgButton' variant='outline-light' onClick={() => navigate("/gupofutsal")}>
                                 Stadium
                             </Button>
                         </Carousel.Caption>
@@ -58,19 +58,19 @@ export default function Home() {
                         <Col onClick={() => navigate("/scsoccer")}>
                             <img src='/images/football2.jpg' className='midImg' alt='School Soccer Field' />
                         </Col>
-                        <Col onClick={() => navigate("/mofutsal")}>
+                        <Col onClick={() => navigate("/gupofutsal")}>
                             <img src='/images/football3.jpg' className='midImg' alt='Mortar Futsal Field' />
                         </Col>
                     </Row>
                     <Row className='fieldName mt-2'>
                         <Col onClick={() => navigate("/scfutsal")}>School Futsal Field</Col>
                         <Col onClick={() => navigate("/scsoccer")}>School Soccer Field</Col>
-                        <Col onClick={() => navigate("/mofutsal")}>Mortar Futsal Field</Col>
+                        <Col onClick={() => navigate("/gupofutsal")}>Gupo Futsal Field</Col>
                     </Row>
                     <Row className='explanation'>
                         <Col onClick={() => navigate("/scfutsal")}>A great place for sports and fun!</Col>
                         <Col onClick={() => navigate("/scsoccer")}>Perfect for team activities and events!</Col>
-                        <Col onClick={() => navigate("/mofutsal")}>Ideal for friendly matches and practice!</Col>
+                        <Col onClick={() => navigate("/gupofutsal")}>Ideal for friendly matches and practice!</Col>
                     </Row>
                 </div>
             </Container>

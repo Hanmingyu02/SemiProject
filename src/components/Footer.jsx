@@ -1,22 +1,21 @@
-
 import React, { useState } from "react";
-import {Container, Row, Col, Modal } from "react-bootstrap";
-import { Link} from "react-router-dom";
+import { Container, Row, Col, Modal } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { FaFacebookF } from "react-icons/fa";
 import { IoLogoTwitter } from "react-icons/io";
 import { CiInstagram } from "react-icons/ci";
 
 export default function Footer() {
     const [useShow, setUseShow] = useState(false);
-        const [personShow, setPersonShow] = useState(false);
-    
-        const handlePersonClose = () => setPersonShow(false);
-        const handlePersonShow = () => setPersonShow(true);
-        const handleUseClose = () => setUseShow(false);
-        const handleUseShow = () => setUseShow(true);
-  return (
-    <div>
-      
+    const [personShow, setPersonShow] = useState(false);
+
+    const handlePersonClose = () => setPersonShow(false);
+    const handlePersonShow = () => setPersonShow(true);
+    const handleUseClose = () => setUseShow(false);
+    const handleUseShow = () => setUseShow(true);
+    return (
+        <div>
+            <hr style={{ marginTop: "300px", marginBottom: "30px" }} />
             <Container>
                 <Row>
                     <Col>
@@ -320,6 +319,6 @@ export default function Footer() {
                     <p>이 약관은 2025-02-27부터 시행합니다.</p>
                 </Modal.Body>
             </Modal>
-    </div>
-  )
+        </div>
+    );
 }

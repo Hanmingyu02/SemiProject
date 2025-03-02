@@ -25,7 +25,6 @@ export default function Login() {
                     </Form>
                 </div>
             </Container>
-            <hr style={{ marginTop: "100px", marginBottom: "30px" }} />
             
         </div>
     );

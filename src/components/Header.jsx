@@ -51,7 +51,7 @@ export default function Header() {
     const handleSignUp = () => {
         const isFormValid = checkUse && checkInformation && checkAge;
         if (isFormValid) {
-            navigate("/login");
+            navigate("/register");
             handleClose();
         } else {
             alert("필수 이용약관에 동의 하셔야 합니다.");

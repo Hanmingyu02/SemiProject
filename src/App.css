@@ -92,26 +92,37 @@
     height: 50px;
     width: 140px;
 }
-.loginWrap{
-    max-width: 60%;
+.loginWrap {
+    max-width: 50%;
     text-align: center;
     margin: auto;
-    background-color: bisque;
-    margin-top: 30%;
-    height: 500px;
+    background-color: #41475a;
+    margin-top: 25%;
+    height: 600px;
 }
-.loginTopText{
+.loginTopText {
     font-size: 2rem;
     padding-top: 8%;
     padding-bottom: 3%;
-    font-weight: bold;
+    color: white;
 }
-.loginBody{
+.loginBody {
     max-width: 80%;
     margin: auto;
 }
-.loginButton{
+.loginButton {
     height: 70px;
     width: 80px;
-    border-radius: px;
+}
+.loginTitle{
+    font-size: 2rem;
+    font-weight: bold;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    background-color:#2f3241;
+    color: white;
+}
+.loginControl{
+    height: 60px;
+    color: white;
 }

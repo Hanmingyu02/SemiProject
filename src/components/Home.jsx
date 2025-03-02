@@ -17,7 +17,7 @@ export default function Home() {
 
     return (
         <div>
-            <div>
+            <div style={{width:"80%" , margin:"auto"}}>
                 <Carousel data-bs-theme='dark' controls={false} indicators={false}>
                     <Carousel.Item>
                         <img className='d-block w-100 topImg' src='/images/football1.jpg' alt='First slide' />

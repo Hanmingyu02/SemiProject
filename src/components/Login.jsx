@@ -1,9 +1,10 @@
 import React from 'react'
+import { Container } from 'react-bootstrap'
 
 export default function Login() {
   return (
-    <div>
-      로그인
-    </div>
+    <Container>
+      sd
+    </Container>
   )
 }

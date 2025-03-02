@@ -59,12 +59,12 @@ export default function Header() {
     };
 
     return (
-        <div onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)} style={{ position: "relative" }}>
+        <div style={{ position: "relative" }}>
             <Navbar collapseOnSelect expand='lg' fixed='top' bg='light' data-bs-theme='light'>
-                <Navbar.Brand as={Link} to='/'>
+                <Navbar.Brand as={Link} to='/' style={{ padding: "10px" }}>
                     Reservation
                 </Navbar.Brand>
-                <div className='centered'>
+                <div className='centered' onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
                     <Navbar.Toggle aria-controls='responsive-navbar-nav' />
                     <Navbar.Collapse id='responsive-navbar-nav'>
                         <Nav className='me-auto'>

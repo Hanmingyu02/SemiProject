@@ -1,8 +1,12 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Collapse, Modal, Button, Form, Nav, Navbar, Card } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "./AuthContext";
+import axiosInstance from "./axiosInstance";
 
 export default function Header() {
+    const { user, logoutUser } = useContext(AuthContext);
+
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const [show, setShow] = useState(false);
@@ -57,6 +61,15 @@ export default function Header() {
             alert("필수 이용약관에 동의 하셔야 합니다.");
         }
     };
+    const LogoutHandler = async () => {
+        try {
+            let url = `http://localhost:7777/api/auth/logout`;
+            await axiosInstance.post(url, { email: user.email });
+        } catch (error) {
+            alert("로그아웃 처리 중 에러: " + error);
+        }
+        logoutUser();
+    };
 
     return (
         <div style={{ position: "relative" }}>
@@ -84,9 +97,16 @@ export default function Header() {
                     </Navbar.Collapse>
                 </div>
                 <Nav>
-                    <Nav.Link as={Link} to='/login'>
-                        Login
-                    </Nav.Link>
+                    {!user && (
+                        <Nav.Link as={Link} to='/login'>
+                            Login
+                        </Nav.Link>
+                    )}
+                    {user && (
+                        <Nav.Link as={Link} to='/login' onClick={LogoutHandler}>
+                            Logout
+                        </Nav.Link>
+                    )}
                     <Nav.Link onClick={handleShow}>Register</Nav.Link>
                 </Nav>
             </Navbar>

@@ -1,9 +1,7 @@
-import React, { useState } from "react";
-import { Button, Carousel, Container, Row, Col, Modal } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
-import { FaFacebookF } from "react-icons/fa";
-import { IoLogoTwitter } from "react-icons/io";
-import { CiInstagram } from "react-icons/ci";
+import React from "react";
+import { Button, Carousel, Container, Row, Col} from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+
 
 export default function Home() {
     const navigate = useNavigate();

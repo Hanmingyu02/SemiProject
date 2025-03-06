@@ -309,3 +309,15 @@
     height: 150px;
     margin: auto;
 }
+
+.addr-wrap {
+    display: flex;
+}
+
+.marker {
+    margin: 3px;
+}
+
+.field-addr-wrap {
+    margin: 4px;
+}

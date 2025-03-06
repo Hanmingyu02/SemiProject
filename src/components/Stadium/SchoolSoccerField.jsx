@@ -26,7 +26,9 @@ export default function SchoolSoccerField() {
 
             <div className="btn-wrap">
                 <div className="btn-map-wrap">
-                    <span className="btn-map">View the Map</span>
+                    <span className="btn-map" onClick={() => navigate('/scsoccermap')}>
+                        View the Map
+                    </span>
                 </div>
                 <div className="btn-reservation-wrap">
                     <span className="btn-res" onClick={() => navigate('/reservationPage')}>

@@ -19,6 +19,9 @@ import Footer from './components/Footer';
 import MyPage from './components/MyPage';
 import BoardPost from './components/Board/BoardPost';
 import Boardnotice from './components/Board/Boardnotice';
+import ScfutsalMap from './components/Stadium/SchoolFutsalMap';
+import ScsoccerMap from './components/Stadium/SchoolSoccerMap';
+import GupofutsalMap from './components/Stadium/GupoFutsalMap';
 
 function App() {
     return (
@@ -49,6 +52,9 @@ function App() {
                                     <Route path="/mypage" element={<MyPage />} />
                                     <Route path="/post" element={<BoardPost />} />
                                     <Route path="/notice/:notice_id" element={<Boardnotice />} />
+                                    <Route path="/scfutsalmap" element={<ScfutsalMap />} />
+                                    <Route path="/scsoccermap" element={<ScsoccerMap />} />
+                                    <Route path="/gupofutsalmap" element={<GupofutsalMap />} />
                                 </Routes>
                             </Col>
                         </Row>

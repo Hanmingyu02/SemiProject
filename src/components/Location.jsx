@@ -13,7 +13,7 @@ export default function Location() {
                         <div className="loc-li">
                             <span className="li-title">School Soccer Field</span>
                             <img className="school-soccer" src="/images/football2.jpg" alt="학교 운동장" />
-                            <button className="li-map" onClick={() => navigate('/scsoccer')}>
+                            <button className="li-map" onClick={() => navigate('/scsoccermap')}>
                                 View the Map
                             </button>
                         </div>
@@ -22,7 +22,7 @@ export default function Location() {
                         <div className="loc-li">
                             <span className="li-title">School Futsal Field</span>
                             <img className="school-futsal" src="/images/football1.jpg" alt="학교 풋살장" />
-                            <button className="li-map" onClick={() => navigate('/scfutsal')}>
+                            <button className="li-map" onClick={() => navigate('/scfutsalmap')}>
                                 View the Map
                             </button>
                         </div>
@@ -31,7 +31,7 @@ export default function Location() {
                         <div className="loc-li">
                             <span className="li-title">Gupo Futsal Field</span>
                             <img className="gupo-futsal" src="/images/football3.jpg" alt="구포 체육공원" />
-                            <button className="li-map" onClick={() => navigate('/gupofutsal')}>
+                            <button className="li-map" onClick={() => navigate('/gupofutsalmap')}>
                                 View the Map
                             </button>
                         </div>

@@ -16,6 +16,7 @@ import SchoolSoccerField from "./components/Stadium/SchoolSoccerField";
 import GupoFusalField from "./components/Stadium/GupoFusalField";
 import Register from "./components/Register";
 import Footer from "./components/Footer";
+import MyPage from "./components/MyPage"
 
 function App() {
     return (
@@ -43,6 +44,7 @@ function App() {
                                     <Route path='/gupofutsal' element={<GupoFusalField />} />
                                     <Route path='/scfutsal' element={<SchoolFutsalField />} />
                                     <Route path='/register' element={<Register />} />
+                                    <Route path='/mypage' element={<MyPage/>} />
                                 </Routes>
                             </Col>
                         </Row>

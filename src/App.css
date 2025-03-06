@@ -1,4 +1,3 @@
-
 .centered {
     text-align: center;
     margin: auto;
@@ -178,23 +177,39 @@
     bottom: 0;
     left: 2.7%;
 }
-.register{
+.register {
     width: 50%;
     margin: auto;
 }
-.registerTop{
+.registerTop {
     margin: 15px;
     font-family: 'Times New Roman', Times, serif;
     font-weight: 530;
     font-size: large;
 }
-.registerBtn{
+.registerBtn {
     margin: auto;
     text-align: center;
 }
-.registerText{
+.registerText {
     font-size: 0.7rem;
     color: red;
     margin-left: 4px;
 }
+.mypageTop {
+    margin: 15px;
 
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 430;
+    font-size: 2rem;
+}
+.mypageBody {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 530;
+    font-size: 1.5rem;
+}
+.mypageImg {
+    width: 200px;
+    height: 150px;
+    margin: auto;
+}

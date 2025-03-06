@@ -14,34 +14,61 @@ export default function Register() {
     const [email, setEmail] = useState('');
     const [passwd, setPasswd] = useState('');
     const [passwdChk, setPasswdChk] = useState('');
-    const [username, setUsername] = useState(''); // 'userName' -> 'username'으로 변경
+    const [username, setUsername] = useState('');
+    const [isEmailAvailable, setIsEmailAvailable] = useState(null);
 
+    const CheckDuplicateEmail = async () => {
+        if (!email) {
+            alert('Please enter your email');
+            email.target.focus();
+            return;
+        }
+        try {
+            const response = await axios.post(
+                'http://localhost:7777/api/users/duplex',
+                { email },
+                { headers: { 'Content-Type': 'application/json' } }
+            );
+            console.log('Duplicate check response:', response.data);
+            if (response.data.result === 'ok') {
+                setIsEmailAvailable(true);
+                alert(response.data.message);
+                passwdRef.target.focus();
+            } else if (response.data.result === 'no') {
+                setIsEmailAvailable(false);
+                alert(response.data.message);
+                setEmail('');
+                emailRef.target.focus();
+            }
+        } catch (error) {
+            console.error('Email check failed:', error.message);
+            alert(`Email duplication check failed: ${error.message}`);
+            setIsEmailAvailable(null);
+        }
+    };
     const JoinHandler = (e) => {
         e.preventDefault();
-        // 비밀번호 확인
         if (passwd !== passwdChk) {
-            alert('비밀번호가 일치하지 않습니다.');
+            alert('Password does not mathch');
             return;
         }
         SignUpUser();
     };
 
     const SignUpUser = async () => {
-        const userData = { email, username, passwd }; // 'userName' -> 'username'
-        console.log('Sending data:', userData); // 디버깅용 로그 추가
+        const userData = { email, username, passwd };
         const url = 'http://localhost:7777/api/users';
         try {
             const response = await axios.post(url, userData, {
                 headers: { 'Content-Type': 'application/json' },
             });
-            console.log('Response:', response.data); // 응답 확인
+            console.log('Response:', response.data);
             if (response.data.result === 'success') {
-                // 백엔드 응답 형식에 맞춤
-                alert('회원가입 성공');
+                alert('Signup success');
                 InputClear();
                 navigate('/login');
             } else {
-                alert(`회원가입 실패: ${response.data.message}`);
+                alert(`Signup fail: ${response.data.message}`);
             }
         } catch (error) {
             console.error('Request failed:', error.message);
@@ -54,7 +81,7 @@ export default function Register() {
         setEmail('');
         setPasswd('');
         setPasswdChk('');
-        setUsername(''); // 'setUserName' -> 'setUsername'
+        setUsername('');
         emailRef.current.focus();
     };
 
@@ -64,13 +91,14 @@ export default function Register() {
                 <div className="registerTop centered">Sign UP</div>
                 <Form onSubmit={JoinHandler}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                        {email ? (
-                            <Form.Label>Email address</Form.Label>
-                        ) : (
-                            <Form.Label>
-                                Email address <span className="registerText">Don't use email</span>
-                            </Form.Label>
-                        )}
+                        <Form.Label>
+                            Email address
+                            {isEmailAvailable === false && <span className="registerText"> Don't use email</span>}
+                            {isEmailAvailable === true && (
+                                <span className="registerText text-success"> Available email</span>
+                            )}
+                        </Form.Label>
+
                         <Form.Control
                             type="email"
                             placeholder="Email"
@@ -79,7 +107,9 @@ export default function Register() {
                             onChange={(e) => setEmail(e.target.value)}
                         />
                         <br />
-                        <Button variant="outline-secondary">Duplicate Check</Button>
+                        <Button variant="outline-secondary" onClick={CheckDuplicateEmail}>
+                            Duplicate Check
+                        </Button>
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Username</Form.Label> {/* 'Name' -> 'Username'으로 UI 개선 */}
@@ -128,7 +158,7 @@ export default function Register() {
                             type="submit"
                             variant="outline-primary"
                             style={{ minWidth: '150px' }}
-                            disabled={!email || !username || !passwd || passwd !== passwdChk} // 버튼 비활성화 조건 추가
+                            disabled={!email || !username || !passwd || passwd !== passwdChk}
                         >
                             Join
                         </Button>

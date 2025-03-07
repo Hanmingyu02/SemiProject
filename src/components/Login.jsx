@@ -1,14 +1,13 @@
-// src/components/Login.js
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Container, Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { GoArrowRight } from 'react-icons/go';
-import { useUser } from '../context/UserContext'; // UserContext로 변경
+import { useUser } from '../context/UserContext';
 
 export default function Login() {
     const navigate = useNavigate();
-    const [loginUser, setLoginUser] = useState({ email: '', passwd: '' ,username:''});
-    const { login } = useUser(); // useUser로 login 가져오기
+    const [loginUser, setLoginUser] = useState({ email: '', passwd: '' });
+    const { login, user } = useUser(); // UserContext에서 login과 user 가져오기
 
     const idRef = useRef(null);
     const passwdRef = useRef(null);
@@ -32,10 +31,10 @@ export default function Login() {
             return;
         }
         const success = await login(email, passwd);
+        
         if (success) {
-            alert(`${loginUser.username}님 환영합니다`);
-            inputClear();
-            navigate('/');
+            // 로그인 후 user 상태를 확인하기 위한 추가적인 useEffect 사용
+            navigate('/'); // 홈으로 이동
         } else {
             alert('로그인에 실패했습니다.');
             inputClear();
@@ -46,6 +45,14 @@ export default function Login() {
     const inputClear = () => {
         setLoginUser({ email: '', passwd: '' });
     };
+
+    // user 상태가 변경될 때마다 로그 찍기
+    useEffect(() => {
+        console.log('User after login state:', user);
+        if (user) {
+            alert(`${user.username}님 환영합니다`); // user가 업데이트된 후에 알림
+        }
+    }, [user]); // user가 변경될 때마다 호출
 
     return (
         <div>

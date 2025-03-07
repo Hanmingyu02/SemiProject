@@ -12,17 +12,18 @@ export const UserProvider = ({ children }) => {
             const response = await fetch('http://localhost:7777/api/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, passwd}),
+                body: JSON.stringify({ email, passwd }),
             });
             const data = await response.json();
             console.log('Login response:', data); // 백엔드 응답 확인
-
+    
             if (response.ok && data.result === 'success') {
-                const userData = data.data; // { userId, email, username, ... }
+                const userData = data.data; // { userId, email, username }
                 setUser(userData);
                 sessionStorage.setItem('accessToken', data.accessToken);
                 localStorage.setItem('refreshToken', data.refreshToken);
-                console.log('User set:', userData); // 상태 설정 확인
+               
+                
                 return true;
             } else {
                 throw new Error(data.message || 'Login failed');
@@ -32,6 +33,7 @@ export const UserProvider = ({ children }) => {
             return false;
         }
     };
+    
 
     const logoutUser = async (email) => {
         try {

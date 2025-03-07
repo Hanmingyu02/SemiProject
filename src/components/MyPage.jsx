@@ -4,6 +4,7 @@ import { useUser } from '../context/UserContext';
 import { useNavigate } from 'react-router-dom';
 
 export default function MyPage() {
+    const imageUrl = 'http://localhost:7777/public/images/person.svg';
     const [email, setEmail] = useState('');
     const [passwd, setPasswd] = useState('');
     const [username, setUsername] = useState('');
@@ -133,7 +134,7 @@ export default function MyPage() {
             <div className="mypageTop centered">My Page</div>
             
             <Card style={{ width: '34rem' }} className="centered">
-                <img src="/images/person.svg" alt="Profile" className="mypageImg" />
+                <img src={imageUrl} alt="Profile" className="mypageImg" />
 
                 <Card.Body>
                     <div className="mypageBody mb-4">User Information</div>

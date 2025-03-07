@@ -4,11 +4,12 @@ import Caution from '../Caution';
 
 export default function SchoolFutsalField() {
     const navigate = useNavigate();
+    const imageUrl1 = 'http://localhost:7777/public/images/football1.jpg';
     return (
         <div className="field-body">
             <div className="field-img-wrap">
                 <div>
-                    <img className="field-img" src="images/football1.jpg" alt="구장사진"></img>
+                    <img className="field-img" src={imageUrl1} alt="구장사진"></img>
                 </div>
             </div>
             <div className="field-des-wrap">

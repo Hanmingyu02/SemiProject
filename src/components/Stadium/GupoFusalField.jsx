@@ -4,11 +4,12 @@ import Caution from '../Caution';
 
 export default function GupoFutsalField() {
     const navigate = useNavigate();
+    const imageUrl3 = 'http://localhost:7777/public/images/football3.jpg';
     return (
         <div className="field-body">
             <div className="field-img-wrap">
                 <div>
-                    <img className="field-img" src="images/football3.jpg" alt="구장사진"></img>
+                    <img className="field-img" src={imageUrl3} alt="구장사진"></img>
                 </div>
             </div>
             <div className="field-des-wrap">
@@ -36,11 +37,6 @@ export default function GupoFutsalField() {
                     </span>
                 </div>
             </div>
-
-            {/* <div className="field-map">
-                <img className="map-img" src="images/scsoccermap.jpg" alt="지도" />
-            </div> */}
-
             <Caution />
         </div>
     );

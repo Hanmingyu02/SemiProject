@@ -5,9 +5,9 @@ import { useUser } from '../../context/UserContext';
 export default function BoardPost() {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
-    const { user } = useUser(); // 현재 로그인한 사용자 정보 가져오기
+    const { user } = useUser(); 
 
-    // user_id는 user 객체에서 가져옵니다. (로그인 상태에서만 가능)
+  
     const user_id = user ? user.user_id : null;
     const handleAddNotice = async (e) => {
         e.preventDefault();

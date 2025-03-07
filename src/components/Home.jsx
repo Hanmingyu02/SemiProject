@@ -5,14 +5,16 @@ import { useNavigate } from "react-router-dom";
 
 export default function Home() {
     const navigate = useNavigate();
-    
+    const imageUrl1 = 'http://localhost:7777/public/images/football1.jpg';
+    const imageUrl2 = 'http://localhost:7777/public/images/football2.jpg';
+    const imageUrl3 = 'http://localhost:7777/public/images/football3.jpg';
 
     return (
         <div>
             <div style={{width:"80%" , margin:"auto"}}>
                 <Carousel data-bs-theme='dark' controls={false} indicators={false}>
                     <Carousel.Item>
-                        <img className='d-block w-100 topImg' src='/images/football1.jpg' alt='First slide' />
+                        <img className='d-block w-100 topImg' src={imageUrl1} alt='First slide' />
                         <Carousel.Caption>
                             <h5 className='imgText'>School Futsal Field</h5>
                             <Button className='imgButton' variant='outline-light' onClick={() => navigate("scfutsal")}>
@@ -21,7 +23,7 @@ export default function Home() {
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
-                        <img className='d-block w-100 topImg' src='/images/football3.jpg' alt='Second slide' />
+                        <img className='d-block w-100 topImg' src={imageUrl2} alt='Second slide' />
                         <Carousel.Caption>
                             <h5 className='imgText'>Gupo Futsal Field</h5>
                             <Button className='imgButton' variant='outline-light' onClick={() => navigate("scsoccer")}>
@@ -30,7 +32,7 @@ export default function Home() {
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
-                        <img className='d-block w-100 topImg' src='/images/football3.jpg' alt='Third slide' />
+                        <img className='d-block w-100 topImg' src={imageUrl3} alt='Third slide' />
                         <Carousel.Caption>
                             <h5 className='imgText'>School Soccer Field</h5>
                             <Button className='imgButton' variant='outline-light' onClick={() => navigate("/gupofutsal")}>
@@ -45,13 +47,13 @@ export default function Home() {
                     <div className='centered m-5 stadium'>Stadium</div>
                     <Row className='midCol'>
                         <Col onClick={() => navigate("/scfutsal")}>
-                            <img src='/images/football1.jpg' className='midImg' alt='School Futsal Field' />
+                            <img src={imageUrl1} className='midImg' alt='School Futsal Field' />
                         </Col>
                         <Col onClick={() => navigate("/scsoccer")}>
-                            <img src='/images/football2.jpg' className='midImg' alt='School Soccer Field' />
+                            <img src={imageUrl2} className='midImg' alt='School Soccer Field' />
                         </Col>
                         <Col onClick={() => navigate("/gupofutsal")}>
-                            <img src='/images/football3.jpg' className='midImg' alt='Mortar Futsal Field' />
+                            <img src={imageUrl3} className='midImg' alt='Mortar Futsal Field' />
                         </Col>
                     </Row>
                     <Row className='fieldName mt-2'>

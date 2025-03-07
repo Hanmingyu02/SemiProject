@@ -34,6 +34,7 @@ export default function Login() {
         
         if (success) {
             // 로그인 후 user 상태를 확인하기 위한 추가적인 useEffect 사용
+            
             navigate('/'); // 홈으로 이동
         } else {
             alert('로그인에 실패했습니다.');
@@ -48,11 +49,10 @@ export default function Login() {
 
     // user 상태가 변경될 때마다 로그 찍기
     useEffect(() => {
-        console.log('User after login state:', user);
         if (user) {
-            alert(`${user.username}님 환영합니다`); // user가 업데이트된 후에 알림
+            alert(`${user.username}님 환영합니다`);
         }
-    }, [user]); // user가 변경될 때마다 호출
+    }, [user]); 
 
     return (
         <div>

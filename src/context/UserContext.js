@@ -53,8 +53,13 @@ export const UserProvider = ({ children }) => {
         }
     };
 
+    const updateUser = (updatedUser) => {
+        console.log('Updating user in context:', updatedUser);
+        setUser(updatedUser); // user 상태 업데이트
+    };
+
     return (
-        <UserContext.Provider value={{ user, setUser, login, logoutUser }}>
+        <UserContext.Provider value={{ user, setUser, login, logoutUser, updateUser }}>
             {children}
         </UserContext.Provider>
     );

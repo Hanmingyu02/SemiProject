@@ -1,5 +1,4 @@
-// src/components/MyPage.js
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Container, Card, Button, Form, Row, Col } from 'react-bootstrap';
 import { useUser } from '../context/UserContext';
 import { useNavigate } from 'react-router-dom';
@@ -13,25 +12,12 @@ export default function MyPage() {
     const passwdRef = useRef();
     const usernameRef = useRef();
 
-    const { user, logoutUser } = useUser();
+    const { user, logoutUser, updateUser } = useUser(); 
     const navigate = useNavigate();
 
-    const changeData = (e, field) => {
-        e.preventDefault();
-        if (!user?.userId) {
-            alert('Login is required.');
-            return;
-        }
-        requestChangeDate(field);
-    };
-
-    const requestChangeDate = async (field) => {
-        const url = `http://localhost:77777/api/users/${user.userId}`;
-        
-        const data = {};
-        if (field === 'email') data.email = email;
-        if (field === 'username') data.username = username;
-        if (field === 'passwd') data.passwd = passwd;
+    
+    const requestChangeData = async (field, data) => {
+        const url = `http://localhost:7777/api/users/${user.user_id}`;
 
         try {
             const response = await fetch(url, {
@@ -47,27 +33,79 @@ export default function MyPage() {
                 throw new Error(result.message || 'There was a problem with the server response.');
             }
 
-            console.log(`${field} change successful:`, result);
+         
+            if (result.user) {
+                updateUser(result.user);
+            }
+
             if (field === 'email') setEmail('');
             if (field === 'username') setUsername('');
             if (field === 'passwd') setPasswd('');
 
             alert(result.message || `${field} has been successfully changed.`);
-
         } catch (error) {
             console.error(`Error changing ${field}:`, error);
             alert(error.message || `An error occurred while changing ${field}.`);
         }
     };
 
+    
+    const changeEmailData = (e) => {
+        e.preventDefault();
+        if (!user?.user_id) {
+            alert('Login is required.');
+            return;
+        }
+        const data = {
+            email: email || user.email, 
+            username: user.username,
+            passwd: user.passwd,
+        };
+        user.email =email;
+        requestChangeData('email', data);
+    };
+
+  
+    const changeNameData = (e) => {
+        e.preventDefault();
+        if (!user?.user_id) {
+            alert('Login is required.');
+            return;
+        }
+        const data = {
+            email: user.email,
+            username: username || user.username, 
+            passwd: user.passwd,
+        };
+        user.username = username;
+        requestChangeData('username', data);
+    };
+
+    
+    const changePasswdData = (e) => {
+        e.preventDefault();
+        if (!user?.user_id) {
+            alert('Login is required.');
+            return;
+        }
+        const data = {
+            email: user.email,
+            username: user.username,
+            passwd: passwd || user.passwd, 
+        };
+        user.passwd = passwd;
+        requestChangeData('passwd', data);
+    };
+
+    
     const deleteAccount = async () => {
-        if (!user?.userId) {
+        if (!user) {
             alert('Login is required.');
             return;
         }
         if (!window.confirm('Are you sure you want to delete your account?')) return;
 
-        const url = `http://localhost:77777/api/users/${user.userId}`;
+        const url = `http://localhost:7777/api/users/${user.user_id}`;
         try {
             const response = await fetch(url, {
                 method: 'DELETE',
@@ -82,9 +120,8 @@ export default function MyPage() {
             }
 
             alert(result.message || 'Account has been successfully deleted.');
-            await logoutUser(user.email); // Logout after deletion
-            navigate('/'); // Redirect to home
-
+            await logoutUser(user.email);
+            navigate('/');
         } catch (error) {
             console.error('Error deleting account:', error);
             alert(error.message || 'An error occurred while deleting the account.');
@@ -94,12 +131,14 @@ export default function MyPage() {
     return (
         <Container>
             <div className="mypageTop centered">My Page</div>
-            <Card style={{ width: '32rem' }} className="centered">
+            
+            <Card style={{ width: '34rem' }} className="centered">
                 <img src="/images/person.svg" alt="Profile" className="mypageImg" />
+
                 <Card.Body>
                     <div className="mypageBody mb-4">User Information</div>
-    
-                    <Form onSubmit={(e) => changeData(e, 'email')}>
+
+                    <Form onSubmit={changeEmailData}>
                         <Row className="mb-3 align-items-center">
                             <Col xs={8}>
                                 <Form.Group controlId="formBasicEmail">
@@ -114,14 +153,14 @@ export default function MyPage() {
                                 </Form.Group>
                             </Col>
                             <Col xs={4}>
-                                <Button type="submit" variant="outline-danger" style={{ width: '150px' }}>
+                                <Button type="submit" variant="outline-danger" style={{ width: '160px' }}>
                                     Change Email
                                 </Button>
                             </Col>
                         </Row>
                     </Form>
-               
-                    <Form onSubmit={(e) => changeData(e, 'username')}>
+
+                    <Form onSubmit={changeNameData}>
                         <Row className="mb-3 align-items-center">
                             <Col xs={8}>
                                 <Form.Group controlId="formBasicName">
@@ -136,14 +175,14 @@ export default function MyPage() {
                                 </Form.Group>
                             </Col>
                             <Col xs={4}>
-                                <Button type="submit" variant="outline-primary" style={{ width: '150px' }}>
+                                <Button type="submit" variant="outline-primary" style={{ width: '160px' }}>
                                     Change Name
                                 </Button>
                             </Col>
                         </Row>
                     </Form>
-        
-                    <Form onSubmit={(e) => changeData(e, 'passwd')}>
+
+                    <Form onSubmit={changePasswdData}>
                         <Row className="mb-3 align-items-center">
                             <Col xs={8}>
                                 <Form.Group controlId="formBasicPasswd">
@@ -158,12 +197,13 @@ export default function MyPage() {
                                 </Form.Group>
                             </Col>
                             <Col xs={4}>
-                                <Button type="submit" variant="outline-success" style={{ width: '150px' }}>
+                                <Button type="submit" variant="outline-success" style={{ width: '160px' }}>
                                     Change Password
                                 </Button>
                             </Col>
                         </Row>
                     </Form>
+
                     <div className="mb-1">
                         <Button variant="outline-dark" style={{ width: '200px' }}>
                             Reservation Information

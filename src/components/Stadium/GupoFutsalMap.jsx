@@ -1,47 +1,59 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import Caution from '../Caution';
+import React, { useEffect } from 'react';
+import { FaMapMarkerAlt } from 'react-icons/fa';
 
-export default function SchoolFutsalField() {
-    const navigate = useNavigate();
+export default function GupoFutsalMap() {
+    useEffect(() => {
+        // 카카오맵 스크립트 로드
+        const script = document.createElement('script');
+        script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=176a433fafdf9eabf366d150a6e89aeb&autoload=false`;
+
+        script.async = true;
+        document.head.appendChild(script);
+
+        script.onload = () => {
+            // 카카오맵 API 초기화
+            window.kakao.maps.load(() => {
+                const container = document.getElementById('map'); // 지도를 표시할 div
+                const options = {
+                    center: new window.kakao.maps.LatLng(36.132819811222305, 128.40416835063792), // 구미시 대학로 61의 위도, 경도
+                    level: 3, // 지도의 확대 레벨
+                };
+                const map = new window.kakao.maps.Map(container, options);
+
+                // 마커 추가
+                const markerPosition = new window.kakao.maps.LatLng(36.132819811222305, 128.40416835063792);
+                const marker = new window.kakao.maps.Marker({
+                    position: markerPosition,
+                });
+                marker.setMap(map);
+            });
+        };
+    }, []);
+
     return (
-        <div className="field-body">
-            <div className="field-img-wrap">
-                <div>
-                    <img className="field-img" src="images/football1.jpg" alt="구장사진"></img>
-                </div>
-            </div>
-            <div className="field-des-wrap">
-                <div className="field-des">KIT Futsal Field</div>
-            </div>
+        <div>
             <div className="des-wrap">
                 <div className="description-wrap">
-                    <div className="description">
-                        <h2 className="details">Stadium Details</h2>
-                        <div className="field-size-des">Field Size : 40m * 20m</div>
-                        <div className="construction">Date of construction of the stadium : 2019/10/20</div>
+                    <div className="map-wrap">
+                        <h2 className="map-title">Gupo Futsal Field</h2>
+                        <div className="addr-wrap">
+                            <div className="marker">
+                                <FaMapMarkerAlt />
+                            </div>
+                            <div className="field-addr-wrap">
+                                <span>Gumi-si Okgye 2gongdan-ro 3-gil Futsal Field</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div className="btn-wrap">
-                <div className="btn-map-wrap">
-                    <span className="btn-map" onClick={() => navigate('/scfutsalmap')}>
-                        View the Map
-                    </span>
-                </div>
-                <div className="btn-reservation-wrap">
-                    <span className="btn-res" onClick={() => navigate('/reservationPage')}>
-                        Reservation
-                    </span>
+            <div className="field-map-wrap">
+                <div className="field-img-wrap">
+                    <div className="field-map">
+                        <div id="map" style={{ width: '500px', height: '400px' }}></div>
+                    </div>
                 </div>
             </div>
-
-            {/* <div className="field-map">
-                <img className="map-img" src="images/scsoccermap.jpg" alt="지도" />
-            </div> */}
-
-            <Caution />
         </div>
     );
 }

@@ -1,7 +1,35 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 
 export default function SchoolSoccerMap() {
+    useEffect(() => {
+        // 카카오맵 스크립트 로드
+        const script = document.createElement('script');
+        script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=176a433fafdf9eabf366d150a6e89aeb&autoload=false`;
+
+        script.async = true;
+        document.head.appendChild(script);
+
+        script.onload = () => {
+            // 카카오맵 API 초기화
+            window.kakao.maps.load(() => {
+                const container = document.getElementById('map'); // 지도를 표시할 div
+                const options = {
+                    center: new window.kakao.maps.LatLng(36.14602119301365, 128.38756298741382), // 구미시 대학로 61의 위도, 경도
+                    level: 3, // 지도의 확대 레벨
+                };
+                const map = new window.kakao.maps.Map(container, options);
+
+                // 마커 추가
+                const markerPosition = new window.kakao.maps.LatLng(36.14602119301365, 128.38756298741382);
+                const marker = new window.kakao.maps.Marker({
+                    position: markerPosition,
+                });
+                marker.setMap(map);
+            });
+        };
+    }, []);
+
     return (
         <div>
             <div className="des-wrap">
@@ -19,9 +47,11 @@ export default function SchoolSoccerMap() {
                     </div>
                 </div>
             </div>
-            <div className="field-img-wrap">
-                <div>
-                    <img className="field-img" src="images/scsoccermap.jpg" alt="구장지도"></img>
+            <div className="field-map-wrap">
+                <div className="field-img-wrap">
+                    <div className="field-map">
+                        <div id="map" style={{ width: '500px', height: '400px' }}></div>
+                    </div>
                 </div>
             </div>
         </div>

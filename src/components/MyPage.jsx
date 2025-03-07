@@ -145,7 +145,8 @@ export default function MyPage() {
                                     <Form.Control
                                         type="email"
                                         name="email"
-                                        placeholder="Email"
+               
+                                     placeholder="Email"
                                         ref={emailRef}
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}

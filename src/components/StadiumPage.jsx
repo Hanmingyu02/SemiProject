@@ -1,7 +1,5 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
-import { Link, useNavigate } from 'react-router-dom';
-import { Nav } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 export default function StadiumPage() {
     const navigate = useNavigate();

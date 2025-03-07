@@ -1,4 +1,3 @@
-// src/context/UserContext.js
 import { createContext, useContext, useState } from 'react';
 import axiosInstance from '../components/axiosInstance';
 
@@ -15,15 +14,14 @@ export const UserProvider = ({ children }) => {
                 body: JSON.stringify({ email, passwd }),
             });
             const data = await response.json();
-            console.log('Login response:', data); // 백엔드 응답 확인
-    
+            console.log('Login response:', data);
+
             if (response.ok && data.result === 'success') {
-                const userData = data.data; // { userId, email, username }
+                const userData = data.data;
                 setUser(userData);
                 sessionStorage.setItem('accessToken', data.accessToken);
                 localStorage.setItem('refreshToken', data.refreshToken);
-               
-                
+
                 return true;
             } else {
                 throw new Error(data.message || 'Login failed');
@@ -33,7 +31,6 @@ export const UserProvider = ({ children }) => {
             return false;
         }
     };
-    
 
     const logoutUser = async (email) => {
         try {
@@ -55,13 +52,11 @@ export const UserProvider = ({ children }) => {
 
     const updateUser = (updatedUser) => {
         console.log('Updating user in context:', updatedUser);
-        setUser(updatedUser); // user 상태 업데이트
+        setUser(updatedUser);
     };
 
     return (
-        <UserContext.Provider value={{ user, setUser, login, logoutUser, updateUser }}>
-            {children}
-        </UserContext.Provider>
+        <UserContext.Provider value={{ user, setUser, login, logoutUser, updateUser }}>{children}</UserContext.Provider>
     );
 };
 

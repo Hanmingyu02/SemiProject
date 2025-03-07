@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function BoardPage() {
     const [notices, setNotices] = useState([]);
+    const [userId, setUserId] = useState(null);
     const navigate = useNavigate();
 
     const fetchNotices = async () => {
@@ -34,7 +35,7 @@ export default function BoardPage() {
                 <Col>
                     <Card className="shadow-sm">
                         <Card.Body>
-                            <h2 className="my-4 text-center">자유 게시판</h2>
+                            <h2 className="my-4 text-center">공지 사항</h2>
 
                             <Button variant="primary" onClick={handlePostClick} className="mb-4">
                                 게시글 등록

@@ -1,15 +1,22 @@
-import React, { useState, useEffect, useContext } from 'react';
+// src/components/Header.js
+import React, { useState, useEffect } from 'react';
 import { Collapse, Modal, Button, Form, Nav, Navbar, Card } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import { AuthContext } from './AuthContext';
+import { useUser } from '../context/UserContext'; // UserContext로 변경
 import axiosInstance from './axiosInstance';
 
 export default function Header() {
-    const { user, logoutUser } = useContext(AuthContext);
+    const { user, logoutUser } = useUser(); // useUser로 변경
 
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const [show, setShow] = useState(false);
+
+    // 디버깅용 로그
+    useEffect(() => {
+        console.log('Header user state:', user);
+    }, [user]);
+
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
@@ -58,17 +65,21 @@ export default function Header() {
             navigate('/register');
             handleClose();
         } else {
-            alert('필수 이용약관에 동의 하셔야 합니다.');
+            alert('You must agree to the required terms.');
         }
     };
+
     const LogoutHandler = async () => {
         try {
-            let url = `http://localhost:7777/api/auth/logout`;
+            let url = `http://localhost:7777/api/auth/logout`; // 포트 번호 확인 (7777 vs 77777)
             await axiosInstance.post(url, { email: user.email });
+            await logoutUser(user.email); // UserContext의 logoutUser 호출
+            navigate('/'); // 로그아웃 후 홈으로 이동
         } catch (error) {
-            alert('로그아웃 처리 중 에러: ' + error);
+            console.error('Logout error:', error);
+            alert('An error occurred during logout: ' + error.message);
+            await logoutUser(user.email); // 에러 발생 시에도 로그아웃
         }
-        logoutUser();
     };
 
     return (
@@ -81,36 +92,21 @@ export default function Header() {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
-                            <Nav.Link as={Link} to="/stadiumPage">
-                                Stadium
-                            </Nav.Link>
-                            <Nav.Link as={Link} to="/location">
-                                Location
-                            </Nav.Link>
-                            <Nav.Link as={Link} to="/boardPage">
-                                Notice
-                            </Nav.Link>
-                            <Nav.Link eventKey={2} as={Link} to="/reservationPage">
-                                Reservation
-                            </Nav.Link>
+                            <Nav.Link as={Link} to="/stadiumPage">Stadium</Nav.Link>
+                            <Nav.Link as={Link} to="/location">Location</Nav.Link>
+                            <Nav.Link as={Link} to="/boardPage">Notice</Nav.Link>
+                            <Nav.Link eventKey={2} as={Link} to="/reservationPage">Reservation</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </div>
                 <Nav>
-                    {!user && (
-                        <Nav.Link as={Link} to="/login">
-                            Login
-                        </Nav.Link>
-                    )}
-                    {user && (
-                        <Nav.Link as={Link} to="/login" onClick={LogoutHandler}>
-                            Logout
-                        </Nav.Link>
-                    )}
+                    {!user && <Nav.Link as={Link} to="/login">Login</Nav.Link>}
+                    {user && <Nav.Link as={Link} to="#" onClick={LogoutHandler}>Logout</Nav.Link>}
                     {!user && <Nav.Link onClick={handleShow}>Register</Nav.Link>}
                     {user && <Nav.Link as={Link} to="/mypage">MyPage</Nav.Link>}
                 </Nav>
             </Navbar>
+            {/* Collapse와 Modal 부분은 동일하므로 생략 */}
             <div className="centered bg-dark" onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
                 <Collapse in={open} className="p-4">
                     <div id="example-collapse-text">
@@ -125,29 +121,26 @@ export default function Header() {
                             </thead>
                             <tbody style={{ fontSize: '0.8rem' }}>
                                 <tr style={{ height: '30px' }}>
-                                    <td></td>
-                                    <td onClick={() => navigate('/scfutsal')}>School Futsal Field</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td onClick={() => navigate('/scfutsal')}>KIT Futsal Field Details</td>
+                                    <td onClick={() => navigate('/scfutsalmap')}>KIT Futsal Field Map</td>
+                                    <td></td><td></td>
                                 </tr>
                                 <tr style={{ height: '30px' }}>
-                                    <td></td>
-                                    <td onClick={() => navigate('/scsoccer')}>School Soccer Field</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td onClick={() => navigate('/scsoccer')}>KIT Soccer Field Details</td>
+                                    <td onClick={() => navigate('/scsoccermap')}>KIT Soccer Field Map</td>
+                                    <td></td><td></td>
                                 </tr>
                                 <tr style={{ height: '30px' }}>
-                                    <td></td>
-                                    <td onClick={() => navigate('/gupofutsal')}>Gupo Futsal Field</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td onClick={() => navigate('/gupofutsal')}>Gupo Field Details</td>
+                                    <td onClick={() => navigate('/gupofutsalmap')}>Gupo Futsal Field Map</td>
+                                    <td></td><td></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </Collapse>
             </div>
-            <Modal show={show} onHide={handleClose} animation={false}>
+ <Modal show={show} onHide={handleClose} animation={false}>
                 <Modal.Header closeButton>
                     <div className="modal-title-centered">약관동의</div>
                 </Modal.Header>
@@ -251,7 +244,7 @@ export default function Header() {
                         가입하기
                     </Button>
                 </Modal.Footer>
-            </Modal>
+            </Modal>       
         </div>
     );
 }

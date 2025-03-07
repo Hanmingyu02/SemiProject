@@ -1,26 +1,23 @@
-import React, { useEffect } from 'react';
-import { FaMapMarkerAlt } from 'react-icons/fa';
+import React, { useEffect } from "react";
+import { FaMapMarkerAlt } from "react-icons/fa";
 
 export default function SchoolFutsalMap() {
     useEffect(() => {
-        // 카카오맵 스크립트 로드
-        const script = document.createElement('script');
+        const script = document.createElement("script");
         script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=176a433fafdf9eabf366d150a6e89aeb&autoload=false`;
 
         script.async = true;
         document.head.appendChild(script);
 
         script.onload = () => {
-            // 카카오맵 API 초기화
             window.kakao.maps.load(() => {
-                const container = document.getElementById('map'); // 지도를 표시할 div
+                const container = document.getElementById("map");
                 const options = {
-                    center: new window.kakao.maps.LatLng(36.14591647345626, 128.38940547632274), // 구미시 대학로 61의 위도, 경도
-                    level: 3, // 지도의 확대 레벨
+                    center: new window.kakao.maps.LatLng(36.14591647345626, 128.38940547632274),
+                    level: 3,
                 };
                 const map = new window.kakao.maps.Map(container, options);
 
-                // 마커 추가
                 const markerPosition = new window.kakao.maps.LatLng(36.14591647345626, 128.38940547632274);
                 const marker = new window.kakao.maps.Marker({
                     position: markerPosition,
@@ -32,25 +29,25 @@ export default function SchoolFutsalMap() {
 
     return (
         <div>
-            <div className="des-wrap">
-                <div className="description-wrap">
-                    <div className="map-wrap">
-                        <h2 className="map-title">School Futsal Field</h2>
-                        <div className="addr-wrap">
-                            <div className="marker">
+            <div className='des-wrap'>
+                <div className='description-wrap'>
+                    <div className='map-wrap'>
+                        <h2 className='map-title'>School Futsal Field</h2>
+                        <div className='addr-wrap'>
+                            <div className='marker'>
                                 <FaMapMarkerAlt />
                             </div>
-                            <div className="field-addr-wrap">
+                            <div className='field-addr-wrap'>
                                 <span>Gumi-si Daehak-ro 61 Futsal Field</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="field-map-wrap">
-                <div className="field-img-wrap">
-                    <div className="field-map">
-                        <div id="map" style={{ width: '500px', height: '400px' }}></div>
+            <div className='field-map-wrap'>
+                <div className='field-img-wrap'>
+                    <div className='field-map'>
+                        <div id='map' style={{ width: "500px", height: "400px" }}></div>
                     </div>
                 </div>
             </div>

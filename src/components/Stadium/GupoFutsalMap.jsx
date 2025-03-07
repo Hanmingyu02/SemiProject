@@ -3,7 +3,6 @@ import { FaMapMarkerAlt } from 'react-icons/fa';
 
 export default function GupoFutsalMap() {
     useEffect(() => {
-        // 카카오맵 스크립트 로드
         const script = document.createElement('script');
         script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=176a433fafdf9eabf366d150a6e89aeb&autoload=false`;
 
@@ -11,16 +10,14 @@ export default function GupoFutsalMap() {
         document.head.appendChild(script);
 
         script.onload = () => {
-            // 카카오맵 API 초기화
             window.kakao.maps.load(() => {
-                const container = document.getElementById('map'); // 지도를 표시할 div
+                const container = document.getElementById('map'); 
                 const options = {
-                    center: new window.kakao.maps.LatLng(36.132819811222305, 128.40416835063792), // 구미시 대학로 61의 위도, 경도
-                    level: 3, // 지도의 확대 레벨
+                    center: new window.kakao.maps.LatLng(36.132819811222305, 128.40416835063792), 
+                    level: 3, 
                 };
                 const map = new window.kakao.maps.Map(container, options);
 
-                // 마커 추가
                 const markerPosition = new window.kakao.maps.LatLng(36.132819811222305, 128.40416835063792);
                 const marker = new window.kakao.maps.Marker({
                     position: markerPosition,

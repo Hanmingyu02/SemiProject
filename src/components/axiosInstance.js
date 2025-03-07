@@ -1,4 +1,3 @@
-// axiosInstance.js
 import axios from "axios";
 import { checkTokenExpiration, refreshAccessToken } from "./authUtil";
 
@@ -12,7 +11,7 @@ axiosInstance.interceptors.request.use(
             if (checkTokenExpiration(accessToken)) {
                 console.log("요청 인터셉터...accessToken유효시간 지난 경우...");
 
-                const newAccessToken = await refreshAccessToken(); //
+                const newAccessToken = await refreshAccessToken(); 
                 console.log("새 억세스토큰 발급 받음");
 
                 if (newAccessToken) {

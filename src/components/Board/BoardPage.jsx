@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Table, Container, Row, Col, Card, Button } from 'react-bootstrap';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import UserContext from '../../context/UserContext';
+import React, { useState, useEffect, useContext } from "react";
+import { Table, Container, Row, Col, Card, Button } from "react-bootstrap";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import UserContext from "../../context/UserContext";
 
 export default function BoardPage() {
     const [notices, setNotices] = useState([]);
@@ -11,15 +11,14 @@ export default function BoardPage() {
 
     const fetchNotices = async () => {
         try {
-            const response = await axios.get('http://localhost:7777/api/notices');
+            const response = await axios.get("http://localhost:7777/api/notices");
             if (Array.isArray(response.data)) {
-                // 공지사항 서버 응답이 배열일 경우
                 setNotices(response.data);
             } else {
-                console.error('Response data is not an array', response.data);
+                console.error("Response data is not an array", response.data);
             }
         } catch (error) {
-            console.error('게시글 목록 불러오기 실패:', error);
+            console.error("게시글 목록 불러오기 실패:", error);
         }
     };
 
@@ -28,26 +27,26 @@ export default function BoardPage() {
     }, []);
 
     const handlePostClick = () => {
-        navigate('/post');
+        navigate("/post");
     };
 
     const handleNoticeClick = (notice_id) => {
-        navigate(`/notice/${notice_id}`); // 게시글 상세 페이지로 이동
+        navigate(`/notice/${notice_id}`);
     };
 
     return (
-        <Container className="py-4">
+        <Container className='py-4'>
             <Row>
                 <Col>
-                    <Card className="shadow-sm">
+                    <Card className='shadow-sm'>
                         <Card.Body>
-                            <h2 className="my-4 text-center">Notice</h2>
+                            <h2 className='my-4 text-center'>Notice</h2>
                             {user && user.user_id === 1 && (
-                                <Button variant="primary" onClick={handlePostClick} className="mb-4">
+                                <Button variant='primary' onClick={handlePostClick} className='mb-4'>
                                     Post
                                 </Button>
                             )}
-                            <Table striped bordered hover responsive className="mt-4">
+                            <Table striped bordered hover responsive className='mt-4'>
                                 <thead>
                                     <tr>
                                         <th>Title</th>
@@ -56,20 +55,13 @@ export default function BoardPage() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {(notices || []).map(
-                                        (
-                                            notice //notices가 null이나 undefined일 때 빈 배열을 대신 사용 나도먼지모름
-                                        ) => (
-                                            <tr
-                                                key={notice.notice_id}
-                                                onClick={() => handleNoticeClick(notice.notice_id)}
-                                            >
-                                                <td>{notice.title}</td>
-                                                <td>{notice.username}</td>
-                                                <td>{new Date(notice.created_at).toLocaleDateString()}</td>
-                                            </tr>
-                                        )
-                                    )}
+                                    {(notices || []).map((notice) => (
+                                        <tr key={notice.notice_id} onClick={() => handleNoticeClick(notice.notice_id)}>
+                                            <td>{notice.title}</td>
+                                            <td>{notice.username}</td>
+                                            <td>{new Date(notice.created_at).toLocaleDateString()}</td>
+                                        </tr>
+                                    ))}
                                 </tbody>
                             </Table>
                         </Card.Body>

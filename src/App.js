@@ -10,7 +10,6 @@ import StadiumPage from './components/StadiumPage';
 import ReservationPage from './components/ReservationPage';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
-import CustomerService from './components/CustomerService';
 import Location from './components/Location';
 import SchoolFutsalField from './components/Stadium/SchoolFutsalField';
 import SchoolSoccerField from './components/Stadium/SchoolSoccerField';
@@ -46,7 +45,6 @@ function App() {
                                         <Route path="/reservationPage" element={<ReservationPage />} />
                                         <Route path="/login" element={<Login />} />
                                         <Route path="/signup" element={<SignUp />} />
-                                        <Route path="/customerservice" element={<CustomerService />} />
                                         <Route path="/location" element={<Location />} />
                                         <Route path="/scsoccer" element={<SchoolSoccerField />} />
                                         <Route path="/gupofutsal" element={<GupoFusalField />} />

@@ -1,20 +1,19 @@
 // src/components/Header.js
-import React, { useState, useEffect } from 'react';
-import { Collapse, Modal, Button, Form, Nav, Navbar, Card } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
-import { useUser } from '../context/UserContext'; // UserContext로 변경
-import axiosInstance from './axiosInstance';
+import React, { useState, useEffect } from "react";
+import { Collapse, Modal, Button, Form, Nav, Navbar, Card } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+import { useUser } from "../context/UserContext";
+import axiosInstance from "./axiosInstance";
 
 export default function Header() {
-    const { user, logoutUser } = useUser(); // useUser로 변경
+    const { user, logoutUser } = useUser();
 
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const [show, setShow] = useState(false);
 
-    // 디버깅용 로그
     useEffect(() => {
-        console.log('Header user state:', user);
+        console.log("Header user state:", user);
     }, [user]);
 
     const handleClose = () => setShow(false);
@@ -62,92 +61,115 @@ export default function Header() {
     const handleSignUp = () => {
         const isFormValid = checkUse && checkInformation && checkAge;
         if (isFormValid) {
-            navigate('/register');
+            navigate("/register");
             handleClose();
         } else {
-            alert('You must agree to the required terms.');
+            alert("You must agree to the required terms.");
         }
     };
 
     const LogoutHandler = async () => {
         try {
-            let url = `http://localhost:7777/api/auth/logout`; // 포트 번호 확인 (7777 vs 77777)
+            let url = `http://localhost:7777/api/auth/logout`;
             await axiosInstance.post(url, { email: user.email });
-            await logoutUser(user.email); // UserContext의 logoutUser 호출
-            navigate('/'); // 로그아웃 후 홈으로 이동
+            await logoutUser(user.email);
+            navigate("/");
         } catch (error) {
-            console.error('Logout error:', error);
-            alert('An error occurred during logout: ' + error.message);
-            await logoutUser(user.email); // 에러 발생 시에도 로그아웃
+            console.error("Logout error:", error);
+            alert("An error occurred during logout: " + error.message);
+            await logoutUser(user.email);
         }
     };
 
     return (
-        <div style={{ position: 'relative' }}>
-            <Navbar collapseOnSelect expand="lg" fixed="top" bg="light" data-bs-theme="light">
-                <Navbar.Brand as={Link} to="/" style={{ padding: '10px' }}>
+        <div style={{ position: "relative" }}>
+            <Navbar collapseOnSelect expand='lg' fixed='top' bg='light' data-bs-theme='light'>
+                <Navbar.Brand as={Link} to='/' style={{ padding: "10px" }}>
                     Reservation
                 </Navbar.Brand>
-                <div className="centered" onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
-                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                    <Navbar.Collapse id="responsive-navbar-nav">
-                        <Nav className="me-auto">
-                            <Nav.Link as={Link} to="/stadiumPage">Stadium</Nav.Link>
-                            <Nav.Link as={Link} to="/location">Location</Nav.Link>
-                            <Nav.Link as={Link} to="/boardPage">Notice</Nav.Link>
-                            <Nav.Link eventKey={2} as={Link} to="/reservationPage">Reservation</Nav.Link>
+                <div className='centered' onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
+                    <Navbar.Toggle aria-controls='responsive-navbar-nav' />
+                    <Navbar.Collapse id='responsive-navbar-nav'>
+                        <Nav className='me-auto'>
+                            <Nav.Link as={Link} to='/stadiumPage'>
+                                Stadium
+                            </Nav.Link>
+                            <Nav.Link as={Link} to='/location'>
+                                Location
+                            </Nav.Link>
+                            <Nav.Link as={Link} to='/boardPage'>
+                                Notice
+                            </Nav.Link>
+                            <Nav.Link eventKey={2} as={Link} to='/reservationPage'>
+                                Reservation
+                            </Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </div>
                 <Nav>
-                    {!user && <Nav.Link as={Link} to="/login">Login</Nav.Link>}
-                    {user && <Nav.Link as={Link} to="#" onClick={LogoutHandler}>Logout</Nav.Link>}
+                    {!user && (
+                        <Nav.Link as={Link} to='/login'>
+                            Login
+                        </Nav.Link>
+                    )}
+                    {user && (
+                        <Nav.Link as={Link} to='#' onClick={LogoutHandler}>
+                            Logout
+                        </Nav.Link>
+                    )}
                     {!user && <Nav.Link onClick={handleShow}>Register</Nav.Link>}
-                    {user && <Nav.Link as={Link} to="/mypage">MyPage</Nav.Link>}
+                    {user && (
+                        <Nav.Link as={Link} to='/mypage'>
+                            MyPage
+                        </Nav.Link>
+                    )}
                 </Nav>
             </Navbar>
-            {/* Collapse와 Modal 부분은 동일하므로 생략 */}
-            <div className="centered bg-dark" onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
-                <Collapse in={open} className="p-4">
-                    <div id="example-collapse-text">
-                        <table style={{ width: '30%', color: 'white', margin: 'auto', textAlign: 'left' }}>
+
+            <div className='centered bg-dark' onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
+                <Collapse in={open} className='p-4'>
+                    <div id='example-collapse-text'>
+                        <table style={{ width: "30%", color: "white", margin: "auto", textAlign: "left" }}>
                             <thead>
                                 <tr>
-                                    <th style={{ minWidth: '150px' }}>Stadium</th>
-                                    <th style={{ minWidth: '150px' }}>Location</th>
-                                    <th style={{ minWidth: '150px' }}>Notice</th>
-                                    <th style={{ minWidth: '150px' }}>Reservation</th>
+                                    <th style={{ minWidth: "150px" }}>Stadium</th>
+                                    <th style={{ minWidth: "150px" }}>Location</th>
+                                    <th style={{ minWidth: "150px" }}>Notice</th>
+                                    <th style={{ minWidth: "150px" }}>Reservation</th>
                                 </tr>
                             </thead>
-                            <tbody style={{ fontSize: '0.8rem' }}>
-                                <tr style={{ height: '30px' }}>
-                                    <td onClick={() => navigate('/scfutsal')}>KIT Futsal Field Details</td>
-                                    <td onClick={() => navigate('/scfutsalmap')}>KIT Futsal Field Map</td>
-                                    <td></td><td></td>
+                            <tbody style={{ fontSize: "0.8rem" }}>
+                                <tr style={{ height: "30px" }}>
+                                    <td onClick={() => navigate("/scfutsal")}>KIT Futsal Field Details</td>
+                                    <td onClick={() => navigate("/scfutsalmap")}>KIT Futsal Field Map</td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
-                                <tr style={{ height: '30px' }}>
-                                    <td onClick={() => navigate('/scsoccer')}>KIT Soccer Field Details</td>
-                                    <td onClick={() => navigate('/scsoccermap')}>KIT Soccer Field Map</td>
-                                    <td></td><td></td>
+                                <tr style={{ height: "30px" }}>
+                                    <td onClick={() => navigate("/scsoccer")}>KIT Soccer Field Details</td>
+                                    <td onClick={() => navigate("/scsoccermap")}>KIT Soccer Field Map</td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
-                                <tr style={{ height: '30px' }}>
-                                    <td onClick={() => navigate('/gupofutsal')}>Gupo Field Details</td>
-                                    <td onClick={() => navigate('/gupofutsalmap')}>Gupo Futsal Field Map</td>
-                                    <td></td><td></td>
+                                <tr style={{ height: "30px" }}>
+                                    <td onClick={() => navigate("/gupofutsal")}>Gupo Field Details</td>
+                                    <td onClick={() => navigate("/gupofutsalmap")}>Gupo Futsal Field Map</td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </Collapse>
             </div>
- <Modal show={show} onHide={handleClose} animation={false}>
+            <Modal show={show} onHide={handleClose} animation={false}>
                 <Modal.Header closeButton>
-                    <div className="modal-title-centered">약관동의</div>
+                    <div className='modal-title-centered'>약관동의</div>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
-                        {['checkbox'].map((type) => (
-                            <div key={`default-${type}`} className="mb-3">
+                        {["checkbox"].map((type) => (
+                            <div key={`default-${type}`} className='mb-3'>
                                 <br />
                                 <Form.Check
                                     type={type}
@@ -158,15 +180,15 @@ export default function Header() {
                                 />
                                 <br />
                                 <Form.Check
-                                    className="mt-4"
+                                    className='mt-4'
                                     type={type}
                                     label={`이용약관 동의 (필수)`}
                                     id={2}
                                     checked={checkUse}
                                     onChange={checkUseHandler}
                                 />
-                                <Card className="mt-4">
-                                    <Card.Body className="scrollable-card">
+                                <Card className='mt-4'>
+                                    <Card.Body className='scrollable-card'>
                                         <Card.Title>제1조 목적</Card.Title>
                                         <Card.Text>
                                             본 이용약관은 “사이트명”(이하 "사이트")의 서비스의 이용조건과 운영에 관한
@@ -183,22 +205,22 @@ export default function Header() {
                                             회원별로 부여하는 고유한 문자와 숫자의 조합을 말합니다.
                                             <br /> ④ 비밀번호 : 회원이 부여받은 ID와 일치된 회원임을 확인하고 회원의
                                             권익 보호를 위하여 회원이 선정한 문자와 숫자의 조합을 말합니다.
-                                            <br /> ⑤ 운영자 : 서비스에 홈페이지를 개설하여 운영하는 운영자를 말합니다.{' '}
+                                            <br /> ⑤ 운영자 : 서비스에 홈페이지를 개설하여 운영하는 운영자를 말합니다.{" "}
                                             <br />⑥ 해지 : 회원이 이용계약을 해약하는 것을 말합니다.
                                         </Card.Text>
                                     </Card.Body>
                                 </Card>
                                 <p></p>
                                 <Form.Check
-                                    className="mt-5"
+                                    className='mt-5'
                                     type={type}
                                     label={`개인정보 수집 및 이용 동의 (필수)`}
                                     id={3}
                                     checked={checkInformation}
                                     onChange={checkInformationHandler}
                                 />
-                                <Card className="mt-4">
-                                    <Card.Body className="scrollable-card">
+                                <Card className='mt-4'>
+                                    <Card.Body className='scrollable-card'>
                                         <Card.Title>1. 개인정보 수집목적 및 이용목적</Card.Title>
                                         <Card.Text>
                                             (1) 홈페이지 회원 가입 및 관리 <br />
@@ -227,7 +249,7 @@ export default function Header() {
                                 <Form.Check
                                     checked={checkAge}
                                     onChange={checkAgeHandler}
-                                    className="mt-4"
+                                    className='mt-4'
                                     type={type}
                                     label={`만 14세 이상입니다. (필수)`}
                                     id={4}
@@ -236,15 +258,15 @@ export default function Header() {
                         ))}
                     </Form>
                 </Modal.Body>
-                <Modal.Footer className="centered">
-                    <Button variant="outline-secondary" onClick={handleClose}>
+                <Modal.Footer className='centered'>
+                    <Button variant='outline-secondary' onClick={handleClose}>
                         취소
                     </Button>
-                    <Button variant="outline-danger" onClick={handleSignUp}>
+                    <Button variant='outline-danger' onClick={handleSignUp}>
                         가입하기
                     </Button>
                 </Modal.Footer>
-            </Modal>       
+            </Modal>
         </div>
     );
 }

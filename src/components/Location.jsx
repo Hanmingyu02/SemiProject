@@ -1,9 +1,11 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
-import { Link, useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 
 export default function Location() {
     const navigate = useNavigate();
+    const imageUrl1 = 'http://localhost:7777/public/images/football1.jpg';
+    const imageUrl2 = 'http://localhost:7777/public/images/football2.jpg';
+    const imageUrl3 = 'http://localhost:7777/public/images/football3.jpg';
     return (
         <div>
             <h1 className="loc-title">Location</h1>
@@ -12,7 +14,7 @@ export default function Location() {
                     <li>
                         <div className="loc-li">
                             <span className="li-title">School Soccer Field</span>
-                            <img className="school-soccer" src="/images/football2.jpg" alt="학교 운동장" />
+                            <img className="school-soccer" src={imageUrl2} alt="학교 운동장" />
                             <button className="li-map" onClick={() => navigate('/scsoccermap')}>
                                 View the Map
                             </button>
@@ -21,7 +23,7 @@ export default function Location() {
                     <li>
                         <div className="loc-li">
                             <span className="li-title">School Futsal Field</span>
-                            <img className="school-futsal" src="/images/football1.jpg" alt="학교 풋살장" />
+                            <img className="school-futsal" src={imageUrl1} alt="학교 풋살장" />
                             <button className="li-map" onClick={() => navigate('/scfutsalmap')}>
                                 View the Map
                             </button>
@@ -30,7 +32,7 @@ export default function Location() {
                     <li>
                         <div className="loc-li">
                             <span className="li-title">Gupo Futsal Field</span>
-                            <img className="gupo-futsal" src="/images/football3.jpg" alt="구포 체육공원" />
+                            <img className="gupo-futsal" src={imageUrl3} alt="구포 체육공원" />
                             <button className="li-map" onClick={() => navigate('/gupofutsalmap')}>
                                 View the Map
                             </button>
